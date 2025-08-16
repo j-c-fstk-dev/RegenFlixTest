@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --background: #f4f0e8; /* Warm cream */
+    --foreground: #3a3d3a; /* Warm charcoal */
+    --card-background: #fefcf9; /* Warm white */
+    --border-color: #e5e1db; /* Soft warm gray */
+}
+
+.dark {
+    --background: #3a3d3a; /* Warm charcoal */
+    --foreground: #f4f0e8; /* Warm cream */
+    --card-background: #5a6b57; /* Dark sage */
+    --border-color: #a8a5a0; /* Warm medium gray */
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+/* Custom scrollbar with cozy colors */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8fb085;
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #7a9c70;
+}
+
+/* Cozy design system utility classes */
+@layer components {
+    .btn-primary {
+        @apply bg-earth-sage hover:bg-primary-400 text-white font-medium py-3 px-8 rounded-cozy transition-all duration-300 shadow-cozy hover:shadow-cozy-hover transform hover:-translate-y-1;
+    }
+    
+    .btn-secondary {
+        @apply bg-transparent hover:bg-earth-cream text-earth-sage border-2 border-earth-sage font-medium py-3 px-8 rounded-cozy transition-all duration-300 hover:shadow-cozy;
+    }
+    
+    .btn-warm {
+        @apply bg-earth-peach hover:bg-accent-warm-gold text-white font-medium py-3 px-8 rounded-cozy transition-all duration-300 shadow-warm hover:shadow-cozy-hover transform hover:-translate-y-1;
+    }
+    
+    .btn-ghost {
+        @apply bg-transparent hover:bg-neutral-soft-gray/30 text-earth-sage font-medium py-2 px-6 rounded-cozy transition-all duration-300;
+    }
+    
+    .card-cozy {
+        @apply bg-neutral-warm-white dark:bg-neutral-dark-sage rounded-cozy-lg shadow-organic hover:shadow-cozy-hover transition-all duration-300 border border-neutral-soft-gray/30 dark:border-neutral-medium-gray/30 transform hover:-translate-y-2;
+    }
+    
+    .input-cozy {
+        @apply w-full px-4 py-3 rounded-cozy border-2 border-neutral-soft-gray dark:border-neutral-medium-gray bg-neutral-warm-white dark:bg-neutral-dark-sage text-neutral-charcoal dark:text-neutral-cream focus:outline-none focus:ring-2 focus:ring-earth-sage focus:border-earth-sage transition-all duration-300;
+    }
+    
+    .text-heading {
+        @apply font-heading font-medium tracking-tight;
+    }
+    
+    .text-body {
+        @apply font-body;
+    }
+    
+    .text-script {
+        @apply font-script;
+    }
+    
+    .container-cozy {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+    
+    .gradient-cozy {
+        background: linear-gradient(135deg, rgba(143, 176, 133, 0.1) 0%, rgba(212, 165, 116, 0.1) 50%, rgba(244, 240, 232, 0.1) 100%);
+    }
+    
+    .gradient-warm {
+        background: linear-gradient(135deg, rgba(212, 165, 116, 0.15) 0%, rgba(196, 144, 128, 0.15) 100%);
+    }
+    
+    .backdrop-blur-cozy {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+    
+    .organic-shape {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+    
+    .organic-shape-alt {
+        border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+    }
+}
+
+/* Cozy animations */
+@layer utilities {
+    .animate-gentle-float {
+        animation: gentleFloat 6s ease-in-out infinite;
+    }
+    
+    .animate-soft-pulse {
+        animation: softPulse 4s ease-in-out infinite;
+    }
+    
+    .animate-organic-bounce {
+        animation: organicBounce 2s ease-in-out infinite;
+    }
+}
+
+/* Enhanced focus styles for accessibility with cozy colors */
+.focus-visible:focus {
+    outline: 2px solid #8fb085;
+    outline-offset: 2px;
+    border-radius: 8px;
+}
+
+/* Cozy loading spinner */
+.spinner-cozy {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e5e1db;
+    border-top: 4px solid #8fb085;
+    border-radius: 50%;
+    animation: spin 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Decorative elements for cozy feel */
+.decorative-dots::before {
+    content: "• • •";
+    color: #d4a574;
+    font-size: 1.5rem;
+    letter-spacing: 0.5rem;
+    opacity: 0.6;
+}
+
+.decorative-leaf::after {
+    content: "🌿";
+    margin-left: 0.5rem;
+    opacity: 0.7;
+}
+
+/* Soft shadows for depth */
+.shadow-soft {
+    box-shadow: 0 4px 20px rgba(143, 176, 133, 0.1);
+}
+
+.shadow-warm-soft {
+    box-shadow: 0 4px 20px rgba(212, 165, 116, 0.15);
+}
