@@ -346,7 +346,7 @@ function CartContent() {
                                 {item.description}
                               </p>
                               <Badge
-                              variant="default"
+                              variant="primary"
                               size="sm"
                               data-oid="xe.1olg">
 
