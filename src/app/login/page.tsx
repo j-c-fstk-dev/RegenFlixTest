@@ -5,8 +5,9 @@ import Link from "next/link";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ToastProvider, useToast } from "@/components/ui/Toast";
 import { Button } from "@/components/ui/Button";
-import { supabase } from '../../supabaseClient';
+import { supabase } from '../../lib/supabaseClient';
 import { Card, CardContent } from "@/components/ui/Card";
+import { useRouter } from "next/navigation";
 
 function LoginForm() {
   const [isLogin, setIsLogin] = useState(true);
@@ -18,12 +19,13 @@ function LoginForm() {
     name: ""
   });
   const { showToast } = useToast();
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    const { email, password } = formData;
+    const { email, password, name, confirmPassword } = formData;
 
     if (isLogin) {
       const { error } = await supabase.auth.signInWithPassword({
@@ -35,12 +37,28 @@ function LoginForm() {
         showToast({ type: "error", title: "Erro ao fazer login", message: error.message });
       } else {
         showToast({ type: "success", title: "Login realizado com sucesso!", message: "Bem-vindo de volta!" });
-        // Optionally redirect here
+        router.push("/");
       }
     } else {
+      // Adiciona validação de senhas
+      if (password !== confirmPassword) {
+        showToast({
+          type: "error",
+          title: "Erro de cadastro",
+          message: "As senhas não coincidem."
+        });
+        setIsLoading(false);
+        return;
+      }
+      
       const { error } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          data: {
+            name: name, // Aqui passamos o nome para o Supabase
+          },
+        },
       });
       setIsLoading(false);
       if (error) {
@@ -51,6 +69,7 @@ function LoginForm() {
           title: "Conta criada com sucesso!",
           message: "Verifique seu email para ativar sua conta."
         });
+        setIsLogin(true); // Redireciona o usuário para a tela de login após o cadastro
       }
     }
   };
@@ -330,7 +349,8 @@ function LoginForm() {
           </p>
         </div>
       </div>
-    </div>);
+    </div>
+  );
 }
 
 export default function LoginPage() {
@@ -339,5 +359,6 @@ export default function LoginPage() {
       <ToastProvider>
         <LoginForm />
       </ToastProvider>
-    </ThemeProvider>);
+    </ThemeProvider>
+  );
 }

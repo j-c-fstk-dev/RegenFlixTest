@@ -1348,6 +1348,10 @@ img, video {
   border-radius: 0;
 }
 
+.rounded-xl {
+  border-radius: .75rem;
+}
+
 .border {
   border-width: 1px;
 }
