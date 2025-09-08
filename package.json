@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",
-        "@supabase/auth-helpers-nextjs": "^0.10.0",
+        "@supabase/ssr": "^0.7.0",
         "@supabase/supabase-js": "^2.57.2",
         "clsx": "^2.1.1",
         "next": "15.3.5",

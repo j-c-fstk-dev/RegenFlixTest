@@ -1,7 +1,11 @@
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+"use client";
 
-// Use esta função para criar o cliente Supabase em Componentes de Cliente
-export const createClient = () => {
-  return createClientComponentClient();
-};
+import { createBrowserClient } from '@supabase/ssr';
+
+export function createClient() {
+  return createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
