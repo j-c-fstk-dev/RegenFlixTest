@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ToastProvider, useToast } from "@/components/ui/Toast";
 import { Button } from "@/components/ui/Button";
-import { supabase } from '../../lib/clientSupabase';
+import { createClient } from '@/lib/supabase';
 import { Card, CardContent } from "@/components/ui/Card";
 import { useRouter } from "next/navigation";
 
@@ -20,6 +20,7 @@ function LoginForm() {
   });
   const { showToast } = useToast();
   const router = useRouter();
+  const supabase = createClient();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -10,7 +10,7 @@ import { HeroSection } from "@/components/content/HeroSection";
 import { ContentCard } from "@/components/content/ContentCard";
 import { CookieBanner } from "@/components/ui/CookieBanner";
 import { Button } from "@/components/ui/Button";
-import { supabase } from "@/lib/clientSupabase";
+import { createClient } from "@/lib/supabase";
 
 // Adicionando as interfaces para tipar os dados do Supabase
 interface CourseItem {
@@ -54,6 +54,7 @@ export default function Page() {
   const [featuredContent, setFeaturedContent] = useState<ContentItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const supabase = createClient();
 
   useEffect(() => {
     const fetchFeaturedContent = async () => {
