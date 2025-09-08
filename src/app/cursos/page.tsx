@@ -252,7 +252,7 @@ function CoursesContent() {
       case "Avançado":
         return "error" as const;
       default:
-        return "default" as const;
+        return "primary" as const;
     }
   };
 

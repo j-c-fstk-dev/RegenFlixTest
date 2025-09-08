@@ -751,7 +751,7 @@ function RegenPediaContent() {
                       className="flex items-center justify-between"
                       data-oid="y8l1.lw">
 
-                          <Badge variant="default" size="sm" data-oid="vjzih3:">
+                          <Badge variant="primary" size="sm" data-oid="vjzih3:">
                             {book.category}
                           </Badge>
                           <span

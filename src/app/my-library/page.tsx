@@ -188,7 +188,7 @@ function MyLibraryContent() {
 
   const getProgressStatus = (progress: number) => {
     if (progress === 0)
-    return { label: "Não Iniciado", variant: "default" as const };
+    return { label: "Não Iniciado", variant: "primary" as const };
     if (progress === 100)
     return { label: "Concluído", variant: "success" as const };
     return { label: "Em Progresso", variant: "info" as const };

@@ -652,7 +652,7 @@ function RegenMarketContent() {
 
                     <div className="p-4" data-oid="7lql89o">
                       <div className="mb-2" data-oid="x_x0rwj">
-                        <Badge variant="default" size="sm" data-oid="8uto5.2">
+                        <Badge variant="primary" size="sm" data-oid="8uto5.2">
                           {product.category}
                         </Badge>
                       </div>
