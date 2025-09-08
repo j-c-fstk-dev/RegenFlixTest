@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ToastProvider, useToast } from "@/components/ui/Toast";
 import { Button } from "@/components/ui/Button";
-import { supabase } from '../../lib/supabaseClient';
+import { supabase } from '../../lib/clientSupabase';
 import { Card, CardContent } from "@/components/ui/Card";
 import { useRouter } from "next/navigation";
 
