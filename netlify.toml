@@ -1,5 +1,23 @@
+# ==============================
+# 🌱 RegenFlix - Deploy Config
+# ==============================
+
 [build]
+# Troque bun -> npm para compatibilidade
+command = "npm run build"
 publish = ".next"
 
+# ------------------------------
+# 🌍 Variáveis de Ambiente
+# ------------------------------
 [context.production.environment]
-SECRETS_SCAN_OMIT_KEYS = ["NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_ANON_KEY"]
+NEXT_PUBLIC_SUPABASE_URL = "https://tpmiatandpidzkefneof.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRwbWlhdGFuZHBpZHprZWZuZW9mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUzMTYyMTEsImV4cCI6MjA3MDg5MjIxMX0.idK3R-ScSAGXi1daRxR5dxj1iLQR_WjKmUVonHAcXbA"
+BUN_VERSION = "1.1.20"
+NODE_VERSION = "18"
+
+# ------------------------------
+# ⚙️ Plugin Next.js
+# ------------------------------
+[[plugins]]
+package = "@netlify/plugin-nextjs"
