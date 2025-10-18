@@ -5,9 +5,20 @@ import Link from "next/link";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ToastProvider, useToast } from "@/components/ui/Toast";
 import { Button } from "@/components/ui/Button";
-import { createClient } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
 import { Card, CardContent } from "@/components/ui/Card";
 import { useRouter } from "next/navigation";
+
+async function signInWithGoogle() {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${window.location.origin}/auth/callback`
+    }
+  });
+
+  if (error) console.error("Erro no login Google:", error.message);
+}
 
 function LoginForm() {
   const [isLogin, setIsLogin] = useState(true);
@@ -20,7 +31,6 @@ function LoginForm() {
   });
   const { showToast } = useToast();
   const router = useRouter();
-  const supabase = createClient();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,10 +48,9 @@ function LoginForm() {
         showToast({ type: "error", title: "Erro ao fazer login", message: error.message });
       } else {
         showToast({ type: "success", title: "Login realizado com sucesso!", message: "Bem-vindo de volta!" });
-        router.push("/");
+        router.push("/home");
       }
     } else {
-      // Adiciona validação de senhas
       if (password !== confirmPassword) {
         showToast({
           type: "error",
@@ -57,8 +66,9 @@ function LoginForm() {
         password,
         options: {
           data: {
-            name: name, // Aqui passamos o nome para o Supabase
+            name: name,
           },
+          emailRedirectTo: `${window.location.origin}/auth/callback`
         },
       });
       setIsLoading(false);
@@ -70,7 +80,7 @@ function LoginForm() {
           title: "Conta criada com sucesso!",
           message: "Verifique seu email para ativar sua conta."
         });
-        setIsLogin(true); // Redireciona o usuário para a tela de login após o cadastro
+        setIsLogin(true);
       }
     }
   };
@@ -86,7 +96,6 @@ function LoginForm() {
     <div
       className="min-h-screen bg-gradient-to-br from-primary-100 via-neutral-cream to-primary-50 dark:from-neutral-dark-navy dark:via-black dark:to-neutral-dark-navy flex items-center justify-center p-4">
 
-      {/* Background decoration */}
       <div
         className="absolute inset-0 overflow-hidden pointer-events-none">
 
@@ -99,7 +108,6 @@ function LoginForm() {
       </div>
 
       <div className="w-full max-w-md relative z-10">
-        {/* Header */}
         <div className="text-center mb-8">
           <Link
             href="/"
@@ -141,7 +149,6 @@ function LoginForm() {
           </p>
         </div>
 
-        {/* Form Card */}
         <Card className="shadow-regen-hover">
           <CardContent className="p-8">
             <form
@@ -285,7 +292,8 @@ function LoginForm() {
                 type="button"
                 variant="secondary"
                 size="lg"
-                className="w-full">
+                className="w-full"
+                onClick={signInWithGoogle}>
 
                 <svg
                   className="w-5 h-5 mr-2"
@@ -328,7 +336,6 @@ function LoginForm() {
           </CardContent>
         </Card>
 
-        {/* Footer */}
         <div
           className="mt-8 text-center text-sm text-neutral-medium-gray">
 
