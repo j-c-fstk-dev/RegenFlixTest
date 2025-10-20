@@ -10,7 +10,7 @@ import { HeroSection } from '@/components/content/HeroSection';
 import { ContentCard } from '@/components/content/ContentCard';
 import { CookieBanner } from '@/components/ui/CookieBanner';
 import { Button } from '@/components/ui/Button';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/browser';
 
 // Adicionando as interfaces para tipar os dados do Supabase
 interface CourseItem {

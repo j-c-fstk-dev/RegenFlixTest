@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
+import { AuthProvider } from "@/contexts/AuthContext";
+
 export const metadata: Metadata = {
   title: "RegenFlix - Plataforma de Aprendizado Regenerativo",
   description: "Aprenda sobre regeneração, sustentabilidade e agroecologia com especialistas. Cursos, vídeos e materiais para transformar o mundo através do conhecimento.",
@@ -49,7 +51,9 @@ export default function RootLayout({
 }>) {
   return <html lang="pt-BR" data-oid="b1jifow">
       <body className="antialiased" data-oid="hqec2:a">
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
 
         <Script src="https://cdn.jsdelivr.net/gh/onlook-dev/onlook@main/apps/web/client/public/onlook-preload-script.js" strategy="beforeInteractive" type="module" id="https://cdn.jsdelivr.net/gh/onlook-dev/onlook@main/apps/web/client/public/onlook-preload-script.js" data-oid="7x89p63" />
 
