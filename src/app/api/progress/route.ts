@@ -1,10 +1,8 @@
-import { createSupabaseServerClient } from "../../../../lib/supabase/server";
+import { createSupabaseServerClient } from "../../../lib/supabase/server";
 import { NextResponse } from "next/server";
-import { cookies } from 'next/headers'
 
 export async function POST(request: Request) {
-  const cookieStore = cookies()
-  const supabase = await createSupabaseServerClient(cookieStore);
+  const supabase = await createSupabaseServerClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -48,8 +46,7 @@ export async function POST(request: Request) {
 }
 
 export async function GET(request: Request) {
-  const cookieStore = cookies()
-  const supabase = await createSupabaseServerClient(cookieStore);
+  const supabase = await createSupabaseServerClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
